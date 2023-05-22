@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, Self, Optional, AfterViewInit, Directive} from '@angular/core';
+import {Self, Optional, AfterViewInit, Directive} from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { skipWhile, take } from 'rxjs/operators';

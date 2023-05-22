@@ -1,10 +1,7 @@
-import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-// import {App} from 'src/app/core/app-paths';
-import {App} from "../../../core/app-paths";
 import {map, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
-
 @Injectable({
   providedIn: 'root',
 })

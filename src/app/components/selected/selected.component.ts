@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SelectedInterface} from "../../shared/interfece/selected.interface";
 import {Cities, Names} from "../../shared/mock";
@@ -12,7 +12,7 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrls: ['./selected.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectedComponent implements OnInit , AfterViewInit{
+export class SelectedComponent implements OnInit, AfterViewInit {
   form!: FormGroup;
   items!: FormArray;
   isAddItem: boolean = false;
@@ -33,17 +33,18 @@ export class SelectedComponent implements OnInit , AfterViewInit{
 
   dataGrid: any
 
-  constructor(private fb: FormBuilder, private api: GridService ,private ref:ChangeDetectorRef) {
+  constructor(private fb: FormBuilder, private api: GridService, private ref: ChangeDetectorRef) {
 
   }
 
 
   async getDataGrid() {
-   await this.api.get().subscribe(async (res: any) => {
+    await this.api.get().subscribe(async (res: any) => {
       this.dataSource = new MatTableDataSource(res?.users);
       this.ngAfterViewInit()
     })
   }
+
   async ngOnInit() {
     this.initForm()
     await this.getDataGrid()
@@ -59,7 +60,13 @@ export class SelectedComponent implements OnInit , AfterViewInit{
 
   createNewItems(): FormGroup {
     return this.fb.group({
-      description: []
+      description: [' ',
+        [
+          Validators.required,
+          Validators.maxLength(50),
+          Validators.minLength(4),
+          Validators.pattern('^[a-zA-Z ]*$')
+        ]]
     });
   }
 
