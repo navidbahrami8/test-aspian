@@ -26,6 +26,8 @@
     </div>
     <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
   </form>
+  <br/>
+  <mat-divider></mat-divider>
   <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="no">
       <mat-header-cell *matHeaderCellDef mat-sort-header> No.</mat-header-cell>
