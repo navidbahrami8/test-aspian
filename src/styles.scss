@@ -1,0 +1,35 @@
+
+//@import "@ag-grid-community/core/dist/styles/ag-grid.scss";
+//@import "@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material-mixin";
+//@import '@ag-grid-community/core/dist/styles/ag-theme-material/sass/ag-theme-material-default-params';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px 20px;
+}
+.row {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px 20px;
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+
+  &.mobile-row {
+    width: 50%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex: 1 1 100%;
+    align-content: center;
+    align-items: center;
+  }
+}

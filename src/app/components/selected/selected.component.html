@@ -1,0 +1,77 @@
+
+<div style="text-align:center">
+  <form class="form" [formGroup]="form"  (ngSubmit)="save()" >
+    <div class="row">
+    <selected label="Cities" [items]="cities" formControlName="cities"></selected>
+    <selected label="Names" [items]="names" formControlName="names"></selected>
+    </div>
+    <div class="column">
+      <div class="add">
+        <button type="button" [disabled]="isAddItem" class="button" mat-mini-fab (click)="addItem()">
+          <mat-icon svgIcon="plus"></mat-icon>
+        </button>
+      </div>
+      <div class="row" formArrayName="items"
+           *ngFor="let item of itemsGroups.controls let i = index;">
+        <mat-label>Description</mat-label>
+        <div class="array" [formGroupName]="i">
+          <mat-form-field class="mat-input" fxFlex>
+            <input matInput type="text" formControlName="description"/>
+          </mat-form-field>
+        </div>
+        <button [disabled]="isDeleteItem" mat-mini-fab (click)="deleteItemsGroup(i)">
+          <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+  </form>
+  <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="no">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> No.</mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;">{{ i + 1 }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="family">
+      <th mat-header-cell *matHeaderCellDef> LastName</th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef> Age</th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone</th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> Gender</th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="eyeColor">
+      <th mat-header-cell *matHeaderCellDef> EyeColor</th>
+      <td mat-cell *matCellDef="let element"> {{element.eyeColor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef> BirthDate</th>
+      <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
