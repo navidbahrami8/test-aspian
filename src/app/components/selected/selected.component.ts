@@ -33,8 +33,6 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   cities: SelectedInterface [] = Cities
   names: SelectedInterface [] = Names
 
-  dataGrid: any
-
   constructor(private fb: FormBuilder, private api: GridService, private ref: ChangeDetectorRef) {
     this.form = new SelectedForm(fb)
   }
