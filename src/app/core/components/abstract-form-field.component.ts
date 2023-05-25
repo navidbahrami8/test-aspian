@@ -19,9 +19,7 @@ export abstract class AbstractFormFieldComponent implements ControlValueAccessor
   }
 
   ngAfterViewInit(): void {
-
     if (this.ngControl) {
-
       of(this.ngControl.control)
         .pipe(
           skipWhile(fc => !fc),

@@ -5,6 +5,7 @@ import {Cities, Names} from "../../shared/mock";
 import {GridService} from "./services/gird.service";
 import {usersArray, UsersData} from "../../shared/interfece/users.interface";
 import {MatTableDataSource} from "@angular/material/table";
+import {SelectedForm} from "./models/selected.form";
 
 @Component({
   selector: 'app-selected',
@@ -13,8 +14,9 @@ import {MatTableDataSource} from "@angular/material/table";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectedComponent implements OnInit, AfterViewInit {
-  form!: FormGroup;
+  readonly form!: SelectedForm;
   items!: FormArray;
+
   isAddItem: boolean = false;
   isDeleteItem: boolean = false;
 
@@ -34,7 +36,7 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   dataGrid: any
 
   constructor(private fb: FormBuilder, private api: GridService, private ref: ChangeDetectorRef) {
-
+    this.form = new SelectedForm()
   }
 
 
@@ -46,17 +48,9 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
-    this.initForm()
     await this.getDataGrid()
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      cities: ['', Validators.required],
-      names: ['', Validators.required],
-      items: this.fb.array([this.createNewItems()]),
-    })
-  }
 
   createNewItems(): FormGroup {
     return this.fb.group({
@@ -73,7 +67,7 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   addItem(): void {
     this.items = this.form.get('items') as FormArray;
     if (this.items.controls.length < 4) {
-      this.items.push(this.createNewItems());
+      this.form.addItems.push(this.createNewItems());
     } else {
       this.isAddItem = true
     }
@@ -89,7 +83,7 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    console.log(this.form.value, 'value')
+    console.log(this.form.value, ' save value')
   }
 
   ngAfterViewInit() {
