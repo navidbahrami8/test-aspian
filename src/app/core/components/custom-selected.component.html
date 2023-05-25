@@ -1,10 +1,10 @@
-<mat-form-field class="field"  (keyup.enter)="onKey(search.value)">
+<mat-form-field fxFlex class="field"  (keyup.enter)="onKey(search.value)">
   <mat-label>{{ label }}</mat-label>
   <mat-select  #select [formControl]="formControl">
-    <mat-form-field >
+    <mat-form-field class="field">
       <div class="row" >
         <mat-icon svgIcon="search"></mat-icon>
-        <input matInput  #search type="text" />
+        <input matInput  placeholder="Please type item & press enter"  #search type="text" />
       </div>
     </mat-form-field>
     <mat-option *ngFor="let item of items" [value]="item.code">
