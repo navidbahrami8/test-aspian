@@ -2,7 +2,7 @@
 <div style="text-align:center">
   <form class="form" [formGroup]="form"  (ngSubmit)="save()" >
     <div class="row">
-    <selected label="Cities" [items]="cities" formControlName="cities"></selected>
+    <selected label="Cities" [items]="cities" formControlName="cities" ></selected>
     <selected label="Names" [items]="names" formControlName="names"></selected>
     </div>
     <div class="column">

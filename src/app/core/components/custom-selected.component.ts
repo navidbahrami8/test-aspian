@@ -24,7 +24,7 @@ export class CustomSelectedComponent extends AbstractFormFieldComponent {
     this.select.open()
     const filterValue: string = event
     if (filterValue.length != 0) {
-      let filter = this.items.filter((x: any) => x.label.toLowerCase() == filterValue.toLowerCase())
+      let filter = this.items.filter((x: any) => x.label.toLowerCase().includes(filterValue.toLowerCase()))
       filter != null ? this.items = filter : console.log('not exist')
     } else {
       this.items = this.selectedStates
