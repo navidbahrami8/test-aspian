@@ -6,9 +6,6 @@ export interface Selected {
   items: string[];
 }
 
-// cities: ['', Validators.required],
-//   names: ['', Validators.required],
-//   items: this.fb.array([this.createNewItems()]),
 export class SelectedForm extends FormGroup implements Selected {
   cities!: string;
   names!: string;
