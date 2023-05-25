@@ -36,7 +36,7 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   dataGrid: any
 
   constructor(private fb: FormBuilder, private api: GridService, private ref: ChangeDetectorRef) {
-    this.form = new SelectedForm()
+    this.form = new SelectedForm(fb)
   }
 
 
@@ -52,22 +52,11 @@ export class SelectedComponent implements OnInit, AfterViewInit {
   }
 
 
-  createNewItems(): FormGroup {
-    return this.fb.group({
-      description: [' ',
-        [
-          Validators.required,
-          Validators.maxLength(50),
-          Validators.minLength(4),
-          Validators.pattern('^[a-zA-Z ]*$')
-        ]]
-    });
-  }
 
   addItem(): void {
     this.items = this.form.get('items') as FormArray;
     if (this.items.controls.length < 4) {
-      this.form.addItems.push(this.createNewItems());
+      this.form.addItems.push(this.form.createNewItems());
     } else {
       this.isAddItem = true
     }
