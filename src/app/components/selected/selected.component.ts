@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder} from "@angular/forms";
 import {SelectedInterface} from "../../shared/interfece/selected.interface";
 import {Cities, Names} from "../../shared/mock";
 import {GridService} from "./services/gird.service";
