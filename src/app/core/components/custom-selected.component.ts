@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, ViewChild} from '@angular/cor
 import {AbstractFormFieldComponent} from "./abstract-form-field.component";
 import {SelectedInterface} from "../../shared/interfece/selected.interface";
 import {MatSelect} from "@angular/material/select";
+import {debounceTime} from "rxjs";
 
 @Component({
   selector: 'selected',
@@ -11,8 +12,9 @@ import {MatSelect} from "@angular/material/select";
 })
 export class CustomSelectedComponent extends AbstractFormFieldComponent {
   @Input() label!: string;
+  @Input() error!: string;
   @Input() items!: SelectedInterface[];
-  @ViewChild(MatSelect) select!: MatSelect;
+  @ViewChild(MatSelect, {static: true}) select!: MatSelect;
   selectedStates = this.items;
   override ngAfterViewInit() {
     super.ngAfterViewInit();
@@ -20,9 +22,10 @@ export class CustomSelectedComponent extends AbstractFormFieldComponent {
   }
 
 //filter
-  onKey(event: string) {
+  onKey(event: KeyboardEvent) {
     this.select.open()
-    const filterValue: string = event
+    debounceTime(300)
+    const filterValue: string = (event.target as HTMLInputElement).value
     if (filterValue.length != 0) {
       let filter = this.items.filter((x: any) => x.label.toLowerCase().includes(filterValue.toLowerCase()))
       filter != null ? this.items = filter : console.log('not exist')

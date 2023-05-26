@@ -1,15 +1,15 @@
-<mat-form-field fxFlexFill class="field"  (keyup.enter)="onKey(search.value)">
+<mat-form-field class="field" fxFlex  appearance="outline"  >
   <mat-label>{{ label }}</mat-label>
   <mat-select  #select [formControl]="formControl">
-    <mat-form-field class="field">
+    <mat-form-field class="field" fxFlex  appearance="outline">
       <div class="row" >
         <mat-icon svgIcon="search"></mat-icon>
-        <input matInput matTooltip="Please type item & press enter" placeholder="search & press enter"  #search type="text" />
+        <input matInput (keyup)="onKey($event)" matTooltip="Please type item & press enter" placeholder="search & press enter"  #search type="text" />
       </div>
     </mat-form-field>
     <mat-option *ngFor="let item of items" [value]="item.code">
       {{ item.label }}
     </mat-option>
   </mat-select>
-  <mat-error *ngIf="formControl.hasError('required')">Required</mat-error>
+  <mat-error *ngIf="formControl.hasError('required')">{{error}}</mat-error>
 </mat-form-field>
